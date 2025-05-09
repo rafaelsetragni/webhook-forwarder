@@ -1,0 +1,13 @@
+name: webhook-forwarder
+
+services:
+  api:
+    build: .
+    ports:
+      - "${PORT}:8080"
+    env_file: ".env"
+    volumes:
+      - .:/app
+      - ./node_modules:/app/node_modules
+    restart: unless-stopped
+    command: yarn release:api
